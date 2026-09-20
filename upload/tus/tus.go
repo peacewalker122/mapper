@@ -15,7 +15,10 @@ import (
 	"sync"
 
 	"github.com/peacewalker122/mapper/mapper"
+	"github.com/peacewalker122/mapper/upload"
 )
+
+var _ upload.HTTPUploadExtension = (*Handler)(nil)
 
 const (
 	Version       = "1.0.0"

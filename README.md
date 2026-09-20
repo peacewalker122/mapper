@@ -79,18 +79,27 @@ HTTP protocol (`net/http` only, no framework):
 | POST   | `/files/analyze` | JSON `{file_id}` or multipart `file` |
 | POST   | `/imports/sync`  | run mapping → `ImportProcessor`      |
 
-TUS resumable uploads mount as an extension:
+TUS resumable uploads mount as an extension. Adapter lives in an optional
+module:
+
+```bash
+go get github.com/peacewalker122/mapper/upload/tus
+```
 
 ```go
 tusExt := tus.New(tus.WithFileWriter(store))
 handler := mapperhttp.New(svc, store, tusExt) // serves /uploads/tus/*
 ```
 
+`github.com/peacewalker122/mapper/upload/tus` implements
+`upload.HTTPUploadExtension`, so it plugs into the main mapper HTTP package.
+
 ## Testing
 
 ```bash
 go vet ./...
 go test ./...
+(cd upload/tus && go test ./...)
 ```
 
 `e2e/e2e_test.go` proves the full loop: YAML → compiler → registry →
@@ -108,7 +117,8 @@ mapper/        Service, registry, files, mapping, records, processor
 source/        CSV + XLSX adapters (streaming RowReader)
 executor/      ExecutionPlan, type conversion, row validation
 filestore/     tempfile FileStore
-upload/        HTTPUploadExtension + TUS adapter
+upload/        HTTPUploadExtension contract
+upload/tus/    optional TUS module
 mapperhttp/    net/http handlers + error envelope
 e2e/           full-system test
 ```
