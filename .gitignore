@@ -1,0 +1,32 @@
+# Binaries and build output
+/mapper-gen
+*.exe
+*.test
+*.out
+dist/
+
+# Go
+/vendor/
+
+# Frontend
+node_modules/
+frontend/node_modules/
+frontend/**/dist/
+*.tsbuildinfo
+
+# Test and coverage artifacts
+coverage.txt
+coverage.html
+*.coverprofile
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Tool state (never commit)
+.omo/
+.codegraph
