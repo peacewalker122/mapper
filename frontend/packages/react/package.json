@@ -1,0 +1,29 @@
+{
+  "name": "@mapper/react",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.tsx",
+  "module": "./src/index.tsx",
+  "exports": {
+    ".": {
+      "types": "./src/index.tsx",
+      "import": "./src/index.tsx",
+    },
+    "./styles.css": "./src/styles.css"
+  },
+  "dependencies": {
+    "@mapper/client": "workspace:*",
+    "@mapper/core": "workspace:*",
+    "@mapper/upload": "workspace:*",
+    "react": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7"
+  },
+  "scripts": {
+    "test": "vitest run --config vitest.config.ts",
+    "typecheck": "tsc --noEmit"
+  }
+}
